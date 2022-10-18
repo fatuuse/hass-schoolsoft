@@ -121,8 +121,13 @@ class SchoolSoft(object):
             #food_info = food_info.split(u"<br/>")
             food_info = food_info.replace("<br/>"," ")
             lunch_menu.append(food_info)
-        for day in range(0,len(lunch_menu),2):
-            lunch_menu_grouped.append([lunch_menu[day],lunch_menu[day+1]])
+        if len(lunch_menu) > 5:
+            for day in range(0,len(lunch_menu),2):
+          	# step of 2
+              lunch_menu_grouped.append([lunch_menu[day],lunch_menu[day+1]])
+        else:
+            for day in range(0,len(lunch_menu),1):
+              lunch_menu_grouped.append(lunch_menu[day])
 
         return lunch_menu_grouped
 
