@@ -114,10 +114,10 @@ class SchoolSoft(object):
         lunch_menu = []
         lunch_menu_grouped = []
         
-        logging.debug("Menu raw:" + menu)
 
         for div in menu.find_all("td", {"style": "word-wrap: break-word"}):
             food_info = div.get_text(separator=u"<br/>")
+            logging.debug("Menu raw:" + food_info)
             #food_info = food_info.split(u"<br/>")
             food_info = food_info.replace("<br/>"," ")
             lunch_menu.append(food_info)
@@ -316,7 +316,7 @@ if __name__ == "__main__":
       parser.add_argument("-t", "--usertype", type=int, default=2, help = "User type 0 = teacher, 1 = student, 2 = parent")
       parser.add_argument("-l", "--loglevel", type=str, default="warning", help = "log level")
       args = parser.parse_args()
-      
+
       levels = {
         'critical': logging.CRITICAL,
         'error': logging.ERROR,
@@ -326,11 +326,13 @@ if __name__ == "__main__":
         'debug': logging.DEBUG
       }
       log_level = levels.get(args.loglevel.lower())
+      
       logging.getLogger().setLevel(log_level)
+      
       api = SchoolSoft(args.school, args.username, args.password, args.usertype)
     except argparse.ArgumentError:
       logging.debug("No args")
-      quit()
+      exit()
 
 
   day_names = ['Måndag','Tisdag','Onsdag','Torsdag','Fredag','Lördag','Söndag']
