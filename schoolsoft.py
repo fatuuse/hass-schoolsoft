@@ -121,6 +121,8 @@ class SchoolSoft(object):
             #food_info = food_info.split(u"<br/>")
             food_info = food_info.replace("<br/>"," ")
             lunch_menu.append(food_info)
+        
+        logging.debug("Menu count: " + str(len(lunch_menu) ))
         if len(lunch_menu) > 5:
             for day in range(0,len(lunch_menu),2):
           	# step of 2
