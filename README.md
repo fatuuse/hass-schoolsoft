@@ -10,15 +10,15 @@ Home Assistant sensor for Swedish SchoolSoft school management system.
   - updated
   - icon
   - meal
-  - meals_0
-  - student_0
+  - meals_1
   - student_1
   - student_2
-  - preschool_0
+  - student_3
   - preschool_1
   - preschool_2
-  - schedule_0
+  - preschool_3
   - schedule_1
+  - schedule_2
   scan_interval: 21600 #6h
   command_timeout: 30
   command: python3 /config/script/schoolsoft.py -s school -u user -p password
