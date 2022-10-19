@@ -365,18 +365,20 @@ if __name__ == "__main__":
       #raise ValueError("No students")
       logging.debug("No students")
     else:
-      for i in range(len(settings)+1):
+      for i in range(1,len(settings[0])+1):
+        setting_i = i-1
+        logging.debug("Fetch info student " + str(i) + ' of ' + str(len(settings[0])) +' with id ' + settings[0][setting_i])
         output.update(
-          {'student_'+ str(i) +'_id':settings[0][i],
-          'student_'+ str(i) :settings[1][i],
-          'info_'+ str(i) :api.fetch_info(student=settings[0][i]), # no info, needed to change student
-          'preschool_'+ str(i) :api.fetch_preschool_schedule(student=settings[0][i])[weekday],
-          'schedule_'+ str(i) :api.fetch_schedule(student=settings[0][i]),
-          'meals_' + str(i) :api.fetch_lunch_menu(student=settings[0][i])}
+          {'student_'+ str(i) +'_id':settings[0][setting_i],
+          'student_'+ str(i) :settings[1][setting_i],
+          'info_'+ str(i) :api.fetch_info(student=settings[0][setting_i]), # no info, needed to change student
+          'preschool_'+ str(i) :api.fetch_preschool_schedule(student=settings[0][setting_i])[weekday],
+          'schedule_'+ str(i) :api.fetch_schedule(student=settings[0][setting_i]),
+          'meals_' + str(i) :api.fetch_lunch_menu(student=settings[0][setting_i])}
           )
 
-    if len(output["meals_0"]) >= weekday and len(output["meals_0"]) != 0:
-    	output["meal"] = output["meals_0"][weekday]
+    if len(output["meals_1"]) >= weekday and len(output["meals_1"]) != 0:
+    	output["meal"] = output["meals_1"][weekday]
   else:
     output = dict(
       updated = int(datetime.timestamp(datetime.now())),
@@ -388,13 +390,15 @@ if __name__ == "__main__":
       #raise ValueError("No students")
       logging.debug("No students")
     else:
-      for i in range(len(settings)):
+      for i in range(1,len(settings[0])+1):
+        setting_i = i-1
+        logging.debug("Fetch info student " + str(i) + ' of ' + str(len(settings[0])) +' with id ' + settings[0][setting_i])
         output.update(
-          {'student_'+ str(i) +'_id':settings[0][i],
-          'student_'+ str(i) :settings[1][i],
-          'info_'+ str(i) :api.fetch_info(student=settings[0][i]), # no info, needed to change student
+          {'student_'+ str(i) +'_id':settings[0][setting_i],
+          'student_'+ str(i) :settings[1][setting_i],
+          'info_'+ str(i) :api.fetch_info(student=settings[0][setting_i]), # no info, needed to change student
           'preschool_'+ str(i) :'',
-          'schedule_'+ str(i) :api.fetch_schedule(student=settings[0][i])}
+          'schedule_'+ str(i) :api.fetch_schedule(student=settings[0][setting_i])}
           )
   
 
